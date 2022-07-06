@@ -1,0 +1,27 @@
+{
+  "name": "phonebook_part3",
+  "version": "1.0.0",
+  "description": "MOOC full stack course exercises of part 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LindJaakko/MOOC_FullStack_Part3.git"
+  },
+  "author": "Jaakko Lind",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LindJaakko/MOOC_FullStack_Part3/issues"
+  },
+  "homepage": "https://github.com/LindJaakko/MOOC_FullStack_Part3#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
