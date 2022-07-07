@@ -74,10 +74,9 @@ app.get("/api/persons/:id", (request, response) => {
 });
 
 app.get("/info", (request, response) => {
-  date = Date.now();
-  var dateISO = new Date().toISOString();
+  date = new Date();
   response.send(
-    `<h1>Phonebook has info for ${persons.length} people</h1><p>${dateISO}</p>`
+    `<p>Phonebook has info for ${persons.length} people</p><p>${date}</p>`
   );
 });
 
