@@ -27,8 +27,8 @@ let persons = [
 app.use(express.json());
 
 const generateId = () => {
-  const maxId = persons.length > 0 ? Math.max(...persons.map((n) => n.id)) : 0;
-  return maxId + 1;
+  const newId = Math.floor(Math.random() * 100);
+  return newId;
 };
 
 app.post("/api/persons", (request, response) => {
@@ -37,6 +37,18 @@ app.post("/api/persons", (request, response) => {
   if (!body.name) {
     return response.status(400).json({
       error: "name missing",
+    });
+  }
+
+  if (!body.number) {
+    return response.status(400).json({
+      error: "number missing",
+    });
+  }
+
+  if (persons.some((e) => e.name === body.name)) {
+    return response.status(400).json({
+      error: "name must be unique",
     });
   }
 
