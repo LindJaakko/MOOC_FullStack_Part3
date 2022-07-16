@@ -32,6 +32,7 @@ let persons = [
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static("build"));
 
 const generateId = () => {
   const newId = Math.floor(Math.random() * 100);
