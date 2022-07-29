@@ -44,29 +44,29 @@ const generateId = () => {
 app.post("/api/persons", (request, response) => {
   const body = request.body;
 
-  if (!body.name) {
+  if (body.name === undefined) {
     return response.status(400).json({
       error: "name missing",
     });
   }
 
-  if (!body.number) {
+  if (body.number === undefined) {
     return response.status(400).json({
       error: "number missing",
     });
   }
-
+  /*
   if (persons.some((e) => e.name === body.name)) {
     return response.status(400).json({
       error: "name must be unique",
     });
   }
-
-  const person = {
-    id: generateId(),
+*/
+  const person = new Person({
+    //id: generateId(),
     name: body.name,
     number: body.number,
-  };
+  });
 
   person.save().then((savedPerson) => {
     response.json(savedPerson);
