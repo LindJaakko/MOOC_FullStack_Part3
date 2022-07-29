@@ -6,6 +6,8 @@ morgan.token("body", (req, res) => JSON.stringify(req.body));
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body ")
 );
+require("dotenv").config();
+const Person = require("./models/person");
 
 let persons = [
   {
@@ -66,13 +68,15 @@ app.post("/api/persons", (request, response) => {
     number: body.number,
   };
 
-  persons = persons.concat(person);
-
-  response.json(person);
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  Person.find({}).then((persons) => {
+    response.json(persons);
+  });
 });
 
 app.delete("/api/persons/:id", (request, response) => {
@@ -83,14 +87,9 @@ app.delete("/api/persons/:id", (request, response) => {
 });
 
 app.get("/api/persons/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const person = persons.find((person) => person.id === id);
-
-  if (person) {
+  Person.findById(request.params.id).then((person) => {
     response.json(person);
-  } else {
-    response.status(404).end();
-  }
+  });
 });
 
 app.get("/info", (request, response) => {
